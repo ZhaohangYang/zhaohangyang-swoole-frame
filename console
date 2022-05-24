@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+
+define('START_TIME', microtime(true));
+$application = new Application();
+
+$application->add(new \App\Command\TestCommand());
+$application->run();

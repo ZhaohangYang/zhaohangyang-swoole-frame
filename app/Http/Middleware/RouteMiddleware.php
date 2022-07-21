@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 use Exception;
 use FastRoute\Dispatcher\GroupCountBased as GroupCountBasedDispather;
 use Illuminate\Container\Container;
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -44,11 +45,9 @@ class RouteMiddleware implements MiddlewareInterface
         $routeInfo = $this->dispatcher->dispatch($http_method, $uri);
         switch ($routeInfo[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
-                // ... 404 Not Found
-                break;
+                return new JsonResponse(['code' => '404', 'message' => 'Not Found']);
             case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                // ... 405 Method Not Allowed
-                break;
+                return new JsonResponse(['code' => '405', 'message' => 'Method Not Allowed']);
             case \FastRoute\Dispatcher::FOUND:
 
                 $controller_class_name = $routeInfo[1];

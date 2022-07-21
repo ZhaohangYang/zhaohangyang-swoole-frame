@@ -3,8 +3,9 @@
 namespace App\Http;
 
 use App\Application;
-use App\ServiceProvider\Basic\HandlerService\Handler;
 use Illuminate\Contracts\Config\Repository;
+use Swoole\Coroutine;
+use Swoole\Process;
 
 class Server
 {
@@ -20,27 +21,55 @@ class Server
 
     public function start()
     {
-        ini_set('memory_limit', '4G');
+        $host = $this->config->get('swoole.server.host');
+        $port = $this->config->get('swoole.server.port');
+        $ssl  = $this->config->get('swoole.server.ssl');
 
-        $swoole_config = $this->config->get('swoole.coroutine.options');
-        $handler       = $this->app::getContainer()->make(Handler::class);
+        $pool = new Process\Pool(5);
+        $pool->set(['enable_coroutine' => true]);
 
-        \Swoole\Coroutine::set($swoole_config);
-        $scheduler = new \Swoole\Coroutine\Scheduler;
+        $pool->on('WorkerStart', function (Process\Pool $pool, $workerId) use ($host, &$port, $ssl) {
+            ini_set('memory_limit', '1G');
 
-        $scheduler->add(function () use ($handler) {
-            try {
+            // $handler = $this->app::getContainer()->make(Handler::class);
 
-                extract($this->config->get('swoole.server'));
-                $server = new \Swoole\Coroutine\Http\Server($host, $port, $ssl);
-                $server->handle('/', $handler);
-                $server->start();
+            var_dump($host);
+            var_dump((int) ++$port);
+            var_dump($ssl);
 
-            } catch (\Throwable $th) {
-                print_r($th->getMessage());
-            }
+            echo ("[Worker #{$workerId}] WorkerStart, pid: " . posix_getpid() . "\n");
+            // $server = new \Swoole\Coroutine\Http\Server('0:0:0:0', 9501, false);
+            // $server->handle('/', $handler);
+            // $server->start();
+            sleep(1000);
+
+            // $this->startByProcessPool($swoole_config, $handler);
         });
 
-        $scheduler->start();
+        $pool->start();
+    }
+
+    public function startByProcessPool($swoole_config, $handler)
+    {
+
+        $pool = new Process\Pool(5);
+        $pool->set(['enable_coroutine' => true]);
+        $pool->on('WorkerStart', function (Process\Pool $pool, $workerId) {
+            /** 当前是 Worker 进程 */
+            static $running = true;
+            Process::signal(SIGTERM, function () use (&$running) {
+                $running = false;
+                echo "TERM\n";
+            });
+            echo ("[Worker #{$workerId}] WorkerStart, pid: " . posix_getpid() . "\n");
+            while ($running) {
+                Coroutine::sleep(1);
+                echo "sleep 1\n";
+            }
+        });
+        $pool->on('WorkerStop', function (\Swoole\Process\Pool $pool, $workerId) {
+            echo ("[Worker #{$workerId}] WorkerStop\n");
+        });
+        $pool->start();
     }
 }

@@ -15,6 +15,7 @@
             "email": "yangzhaohang@comsenz-service.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "illuminate/container": "^8.71",
         "illuminate/support": "^8.71",

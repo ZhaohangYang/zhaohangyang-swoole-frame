@@ -2,28 +2,13 @@
 
 namespace App\Http\Controller;
 
-use Illuminate\Container\Container;
-use Laminas\Diactoros\Response\JsonResponse;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use App\Http\Controller\BasicController;
 
-class IndexController implements RequestHandlerInterface
+class IndexController extends BasicController
 {
-
-    protected $container;
-
-    protected $factory;
-
-    public function __construct(Container $container)
+    public function test($params)
     {
-        $this->container = $container;
+        $huobanBasic = \App\Application::getContainer()->get('huobanBasic');
+        $redisBasic  = \App\Application::getContainer()->get('redisBasic');
     }
-
-    public function handle(ServerRequestInterface $request): ResponseInterface
-    {
-
-        return new JsonResponse(['message' => 'ok']);
-    }
-
 }

@@ -21,15 +21,13 @@ class Server
 
     public function start()
     {
-        $pool = new Process\Pool(8);
+        $pool = new Process\Pool(1);
 
         $pool->set(['enable_coroutine' => true]); //让每个OnWorkerStart回调都自动创建一个协程
         $pool->on('workerStart', function ($pool, $id) {
             try {
-                ini_set('memory_limit', '4G');
-
+                ini_set('memory_limit', '1G');
                 extract($this->config->get('swoole.server'));
-
                 $handler = $this->app::getContainer()->make(Handler::class);
 
                 $server = new \Swoole\Coroutine\Http\Server($host, $port + $id, $ssl);

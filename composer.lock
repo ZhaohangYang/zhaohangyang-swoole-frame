@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b27d51f5e9b1285bc8ad67a59019d05",
+    "content-hash": "b53f1b62b185eb87e88f56ff04afe5f6",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -3302,11 +3302,23 @@
         },
         {
             "name": "zhaohangyang/huoban_tools_php",
-            "version": "v5.1.9",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
-                "url": "https://gitee.com/ZhaohangYang/huoban_tools_php.git",
-                "reference": "88ff0bc4fe523bd7a66551fe085391bd594cb74b"
+                "url": "https://github.com/ZhaohangYangHuoban/huoban-tools-php.git",
+                "reference": "2cb26bbfc8592dc839eb80225774b541f665cc37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ZhaohangYangHuoban/huoban-tools-php/zipball/2cb26bbfc8592dc839eb80225774b541f665cc37",
+                "reference": "2cb26bbfc8592dc839eb80225774b541f665cc37",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.3"
@@ -3320,7 +3332,11 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2022-05-23T08:34:20+00:00"
+            "support": {
+                "issues": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/issues",
+                "source": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/tree/v6.0.0"
+            },
+            "time": "2022-09-01T06:42:03+00:00"
         },
         {
             "name": "zhaohangyang/laminas-stratigility",

@@ -27,6 +27,6 @@
         "symfony/console": "^5.4",
         "yurunsoft/guzzle-swoole": "^2.2",
         "zhaohangyang/laminas-stratigility": "^1.0",
-        "zhaohangyang/huoban_tools_php": "^5.1"
+        "zhaohangyang/huoban_tools_php": "^6.0"
     }
 }

@@ -6,8 +6,10 @@
  */
 namespace App\ServiceProvider\Huoban;
 
+use App\Application;
 use App\ServiceProvider\BasicServiceProvider;
 use App\ServiceProvider\Huoban\Service\HuobanBasic;
+use Huoban\Helpers\HuobanVerify;
 
 class HuobanServiceProvider extends BasicServiceProvider
 {
@@ -33,9 +35,17 @@ class HuobanServiceProvider extends BasicServiceProvider
         $serviceConfig = $this->container->get('config');
         $huoban_config = $serviceConfig->get('huoban.space_one');
 
-        $this->container->singleton('huobanSpaceOne', function () use ($huoban_config) {
+        $this->container->singleton('HuobanBasic', function () use ($huoban_config) {
             return new HuobanBasic($huoban_config);
         });
+
+        $this->enableHuobanVerify();
+    }
+
+    public function enableHuobanVerify()
+    {
+        $storage_path = Application::StoragePath();
+        HuobanVerify::init($storage_path);
     }
 
 }

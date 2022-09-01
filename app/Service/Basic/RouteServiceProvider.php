@@ -1,8 +1,8 @@
 <?php
-namespace App\ServiceProvider\Basic;
+namespace App\Service\Basic;
 
-use App\ServiceProvider\BasicServiceProvider;
-use App\ServiceProvider\RouteService\Route;
+use App\Service\BasicServiceProvider;
+use App\Service\RouteService\Route;
 use Closure;
 use FastRoute\DataGenerator\GroupCountBased;
 use FastRoute\Dispatcher\GroupCountBased as GroupCountBasedDispather;

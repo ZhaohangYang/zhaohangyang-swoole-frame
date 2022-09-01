@@ -4,10 +4,10 @@
  * @Date: 2021-06-23 16:58:47
  * @Description: 伙伴智慧大客户研发部
  */
-namespace App\ServiceProvider\DataBase;
+namespace App\Service\DataBase;
 
-use App\ServiceProvider\BasicServiceProvider;
-use App\ServiceProvider\DataBase\Service\RedisBasic;
+use App\Service\BasicServiceProvider;
+use App\Service\DataBase\Provider\RedisBasic;
 
 class DataBaseServiceProvider extends BasicServiceProvider
 {

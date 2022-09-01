@@ -10,10 +10,7 @@ class IndexController extends BasicController
     public function test($params)
     {
         $huobanBasic = \App\Application::getContainer()->get('HuobanBasic');
-
-        var_dump($huobanBasic->huoban->getConfig('ticket'));
-
-        $redisBasic = \App\Application::getContainer()->get('redisBasic');
+        $redisBasic  = \App\Application::getContainer()->get('redisBasic');
 
     }
 }

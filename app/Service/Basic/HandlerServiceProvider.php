@@ -1,9 +1,9 @@
 <?php
 
-namespace App\ServiceProvider\Basic;
+namespace App\Service\Basic;
 
-use App\ServiceProvider\BasicServiceProvider;
-use App\ServiceProvider\Basic\HandlerService\Handler;
+use App\Service\BasicServiceProvider;
+use App\Service\Basic\Provider\Handler;
 use Laminas\Stratigility\MiddlewarePipe;
 
 class HandlerServiceProvider extends BasicServiceProvider

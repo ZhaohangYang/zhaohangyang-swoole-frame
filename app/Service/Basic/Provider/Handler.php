@@ -1,11 +1,11 @@
 <?php
 
-namespace App\ServiceProvider\Basic\HandlerService;
+namespace App\Service\Basic\Provider;
 
 // use App\Http\Middleware\ExampleMiddleware;
 use App\Http\Middleware\ParseBodyMiddleware;
 use App\Http\Middleware\RouteMiddleware;
-use App\ServiceProvider\Basic\HandlerService\ServerRequestFactory;
+use App\Service\Basic\Provider\ServerRequestFactory;
 use Illuminate\Contracts\Container\Container;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\Stratigility\MiddlewarePipe;

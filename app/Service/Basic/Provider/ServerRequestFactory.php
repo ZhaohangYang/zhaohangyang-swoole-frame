@@ -1,7 +1,7 @@
 <?php
 declare (strict_types = 1);
 
-namespace App\ServiceProvider\Basic\HandlerService;
+namespace App\Service\Basic\Provider;
 
 use function Laminas\Diactoros\marshalHeadersFromSapi;
 use function Laminas\Diactoros\marshalMethodFromSapi;

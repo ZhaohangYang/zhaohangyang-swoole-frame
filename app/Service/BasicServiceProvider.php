@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ServiceProvider;
+namespace App\Service;
 
 use Closure;
 use Illuminate\Contracts\Support\DeferrableProvider;

@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use App\Application;
-use App\ServiceProvider\Basic\HandlerService\Handler;
+use App\Service\Basic\Provider\Handler;
 use Illuminate\Contracts\Config\Repository;
 use Swoole\Process;
 
@@ -27,7 +27,9 @@ class Server
         $pool->on('workerStart', function ($pool, $id) {
             try {
                 ini_set('memory_limit', '1G');
+
                 extract($this->config->get('swoole.server'));
+
                 $handler = $this->app::getContainer()->make(Handler::class);
 
                 $server = new \Swoole\Coroutine\Http\Server($host, $port + $id, $ssl);

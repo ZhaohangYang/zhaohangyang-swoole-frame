@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ServiceProvider\Basic\ConfigService;
+namespace App\Service\Basic\Provider;
 
 use ArrayAccess;
 use Illuminate\Contracts\Config\Repository as ConfigContract;

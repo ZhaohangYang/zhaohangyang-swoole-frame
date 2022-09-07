@@ -4,10 +4,10 @@
  * @Date: 2021-06-23 16:58:47
  * @Description: 伙伴智慧大客户研发部
  */
-namespace App\Service\DataBase;
+namespace App\ServiceProvider\Swoole;
 
-use App\Service\BasicServiceProvider;
-use App\Service\DataBase\Provider\RedisBasic;
+use App\Models\Redis\RedisBasic;
+use App\ServiceProvider\BasicServiceProvider;
 
 class DataBaseServiceProvider extends BasicServiceProvider
 {
@@ -27,9 +27,7 @@ class DataBaseServiceProvider extends BasicServiceProvider
         $serviceConfig = $this->container->get('config');
         $redis_config  = $serviceConfig->get('redis.default');
 
-        $this->container->singleton('redisBasic', function () use ($redis_config) {
-            return new RedisBasic($redis_config);
-        });
+        RedisBasic::enable($redis_config);
     }
 
 }

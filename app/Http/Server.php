@@ -3,9 +3,11 @@
 namespace App\Http;
 
 use App\Application;
-use App\Service\Basic\Provider\Handler;
+use App\ServiceProvider\Basic\HandlerService\Handler;
+use GuzzleHttp\DefaultHandler;
 use Illuminate\Contracts\Config\Repository;
 use Swoole\Process;
+use Yurun\Util\Swoole\Guzzle\SwooleHandler;
 
 class Server
 {
@@ -27,9 +29,14 @@ class Server
         $pool->on('workerStart', function ($pool, $id) {
             try {
                 ini_set('memory_limit', '1G');
+                // 在你的项目入口加上这句话,启用guzzle，并发
+                DefaultHandler::setDefaultHandler(SwooleHandler::class);
+                // 启用伙伴基础服务。可选
+                $this->app->register(\App\ServiceProvider\Swoole\HuobanServiceProvider::class);
+                // 启用Redis基础服务。可选
+                $this->app->register(\App\ServiceProvider\Swoole\DataBaseServiceProvider::class);
 
                 extract($this->config->get('swoole.server'));
-
                 $handler = $this->app::getContainer()->make(Handler::class);
 
                 $server = new \Swoole\Coroutine\Http\Server($host, $port + $id, $ssl);

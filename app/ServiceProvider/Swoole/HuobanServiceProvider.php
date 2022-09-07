@@ -4,10 +4,10 @@
  * @Date: 2021-06-23 16:58:47
  * @Description: 伙伴智慧大客户研发部
  */
-namespace App\Service\Huoban;
+namespace App\ServiceProvider\Swoole;
 
-use App\Service\BasicServiceProvider;
-use App\Service\Huoban\Provider\HuobanBasic;
+use App\Models\Huoban\HuobanBasic;
+use App\ServiceProvider\BasicServiceProvider;
 
 class HuobanServiceProvider extends BasicServiceProvider
 {
@@ -28,14 +28,17 @@ class HuobanServiceProvider extends BasicServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register($huoban_persistence_enable = false)
     {
         $serviceConfig = $this->container->get('config');
-        $huoban_config = $serviceConfig->get('huoban.space_one');
 
-        $this->container->singleton('HuobanBasic', function () use ($huoban_config) {
-            return new HuobanBasic($huoban_config);
-        });
+        $huoban_pass_config  = $serviceConfig->get('huoban.huoban_pass');
+        $huoban_basic_config = $serviceConfig->get('huoban.huoban_basic');
+
+        $huoban_pass_config = array_merge($huoban_basic_config, $huoban_pass_config);
+
+        HuobanBasic::enable($huoban_pass_config, $huoban_persistence_enable);
+
     }
 
 }

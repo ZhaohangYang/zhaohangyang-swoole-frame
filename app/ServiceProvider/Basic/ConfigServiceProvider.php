@@ -1,8 +1,8 @@
 <?php
-namespace App\Service\Basic;
+namespace App\ServiceProvider\Basic;
 
-use App\Service\BasicServiceProvider;
-use App\Service\Basic\Provider\Config;
+use App\ServiceProvider\BasicServiceProvider;
+use App\ServiceProvider\Basic\ConfigService\Config;
 use Illuminate\Contracts\Config\Repository;
 
 class ConfigServiceProvider extends BasicServiceProvider

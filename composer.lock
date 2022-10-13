@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b53f1b62b185eb87e88f56ff04afe5f6",
+    "content-hash": "d97498e7afd2f4d736be8aefb2767f3e",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -3301,44 +3301,6 @@
             "time": "2022-03-31T09:14:42+00:00"
         },
         {
-            "name": "zhaohangyang/huoban_tools_php",
-            "version": "v6.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ZhaohangYangHuoban/huoban-tools-php.git",
-                "reference": "2cb26bbfc8592dc839eb80225774b541f665cc37"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ZhaohangYangHuoban/huoban-tools-php/zipball/2cb26bbfc8592dc839eb80225774b541f665cc37",
-                "reference": "2cb26bbfc8592dc839eb80225774b541f665cc37",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Huoban\\": "src/",
-                    "Huoban\\Models\\": "src/Models",
-                    "Huoban\\Helpers\\": "src/Helpers"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "support": {
-                "issues": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/issues",
-                "source": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/tree/v6.0.0"
-            },
-            "time": "2022-09-01T06:42:03+00:00"
-        },
-        {
             "name": "zhaohangyang/laminas-stratigility",
             "version": "1.0.2",
             "source": {
@@ -3428,5 +3390,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

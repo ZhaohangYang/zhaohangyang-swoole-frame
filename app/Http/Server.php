@@ -32,6 +32,7 @@ class Server
                 DefaultHandler::setDefaultHandler(SwooleHandler::class);
                 // 启用Redis基础服务。可选
                 $this->app->register(\App\ServiceProvider\Swoole\DataBaseServiceProvider::class);
+                $this->app->register(\App\ServiceProvider\Swoole\HuobanOpenApiServiceProvider::class);
 
                 extract($this->config->get('swoole.server'));
                 $handler = $this->app::getContainer()->make(Handler::class);

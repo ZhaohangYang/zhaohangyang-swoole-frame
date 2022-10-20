@@ -6,7 +6,8 @@
  */
 namespace App\ServiceProvider\Swoole;
 
-use App\Models\Redis\RedisBasic;
+use App\Models\Db\Mysql\MysqlBasic;
+use App\Models\Db\Redis\RedisBasic;
 use App\ServiceProvider\BasicServiceProvider;
 
 class DataBaseServiceProvider extends BasicServiceProvider
@@ -25,9 +26,12 @@ class DataBaseServiceProvider extends BasicServiceProvider
     public function register()
     {
         $serviceConfig = $this->container->get('config');
-        $redis_config  = $serviceConfig->get('redis.default');
 
-        RedisBasic::enable($redis_config);
+        $redis_config = $serviceConfig->get('database.redis');
+        $redis_config['enable'] && RedisBasic::enable($redis_config);
+
+        $mysql_config = $serviceConfig->get('database.mysql');
+        $mysql_config['enable'] && MysqlBasic::enable($mysql_config);
     }
 
 }

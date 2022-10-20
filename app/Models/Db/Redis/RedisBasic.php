@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\Redis;
+namespace App\Models\Db\Redis;
 
 use Swoole\Database\RedisConfig;
 use Swoole\Database\RedisPool;

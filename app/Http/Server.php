@@ -28,9 +28,9 @@ class Server
         $pool->on('workerStart', function ($pool, $id) {
             try {
                 ini_set('memory_limit', '1G');
-                // 在你的项目入口加上这句话,启用guzzle，并发
+                // 启用guzzle，并发
                 DefaultHandler::setDefaultHandler(SwooleHandler::class);
-                // 启用Redis基础服务。可选
+                // 数据库服务【选择开启】
                 $this->app->register(\App\ServiceProvider\Swoole\DataBaseServiceProvider::class);
                 $this->app->register(\App\ServiceProvider\Swoole\HuobanOpenApiServiceProvider::class);
 

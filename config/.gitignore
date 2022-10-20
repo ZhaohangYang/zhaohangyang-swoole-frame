@@ -1,3 +1,8 @@
 huoban.php
+<<<<<<< HEAD
 huoban_openapi.php
 redis.php
+=======
+redis.php
+database.php
+>>>>>>> master

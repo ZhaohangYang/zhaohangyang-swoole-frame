@@ -27,7 +27,11 @@
         "symfony/console": "^5.4",
         "yurunsoft/guzzle-swoole": "^2.2",
         "zhaohangyang/laminas-stratigility": "^1.0",
+<<<<<<< HEAD
         "zhaohangyang/huoban-openapi": "^1.0"
+=======
+        "illuminate/database": "^8.71"
+>>>>>>> master
     },
     "config": {
         "allow-plugins": {

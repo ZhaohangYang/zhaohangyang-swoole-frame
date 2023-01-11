@@ -9,7 +9,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class BasicCommand extends Command
 {
-    public $app;
+    // 启动应用
+    protected $app;
+    // 配置服务
+    protected $config;
+    // swoole任务对象
+    protected $scheduler;
+
     protected static $defaultName = 'app:basic';
 
     protected function configure(): void
@@ -23,6 +29,7 @@ class BasicCommand extends Command
         $action = $input->getArgument('action');
 
         if (method_exists($this, $action)) {
+
             $this->app    = require dirname(__DIR__, 3) . '/bootstrap/command.php';
             $this->config = $this->app->getContainer()->get('config');
 
@@ -47,7 +54,7 @@ class BasicCommand extends Command
 
             try {
                 call_user_func($callback);
-            } catch (\Throwable $th) {
+            } catch (\Throwable$th) {
                 print_r($th->getMessage());
             }
         });

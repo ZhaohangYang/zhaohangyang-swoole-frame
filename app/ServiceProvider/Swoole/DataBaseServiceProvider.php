@@ -6,8 +6,8 @@
  */
 namespace App\ServiceProvider\Swoole;
 
-use App\Models\Redis\RedisBasic;
 use App\ServiceProvider\BasicServiceProvider;
+use App\ServiceProvider\Swoole\DataBaseService\RedisBasic;
 
 class DataBaseServiceProvider extends BasicServiceProvider
 {

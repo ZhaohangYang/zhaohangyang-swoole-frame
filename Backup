@@ -1,0 +1,12 @@
+php8.3 /Users/zhaohangyang/Library/Caches/Homebrew/Backup
+
+
+phpize 
+./configure --enable-openssl  --with-openssl-dir=/usr/local/opt/openssl@3/  --enable-http2  --enable-swoole-json  --enable-swoole-curl  --enable-cares  --enable-mysqlnd  --enable-sockets  --enable-debug  --enable-debug-log  --enable-trace-log  --enable-swoole  
+./configure --enable-openssl  --with-openssl-dir=/usr/local/opt/openssl@3/  --enable-http2  --enable-swoole-json  --enable-swoole-curl  --enable-cares  --enable-mysqlnd  --enable-sockets  --enable-swoole  
+make && sudo make install
+
+phpize
+./configure
+sudo make&&make install
+

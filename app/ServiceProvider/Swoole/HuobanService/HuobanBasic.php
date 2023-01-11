@@ -5,9 +5,9 @@
  * @Description: 伙伴智慧大客户研发部
  */
 
-namespace App\Models\Huoban;
+namespace App\ServiceProvider\Swoole\HuobanService;
 
-use App\Models\Redis\RedisBasic;
+use App\ServiceProvider\Swoole\DataBaseService\RedisBasic;
 use Huoban\Huoban;
 
 /**

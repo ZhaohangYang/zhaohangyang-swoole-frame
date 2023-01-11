@@ -3302,16 +3302,16 @@
         },
         {
             "name": "zhaohangyang/huoban_tools_php",
-            "version": "v6.0.0",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ZhaohangYangHuoban/huoban-tools-php.git",
-                "reference": "2cb26bbfc8592dc839eb80225774b541f665cc37"
+                "reference": "e2ff18245f285a4baf76e5245a83596577b22e6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ZhaohangYangHuoban/huoban-tools-php/zipball/2cb26bbfc8592dc839eb80225774b541f665cc37",
-                "reference": "2cb26bbfc8592dc839eb80225774b541f665cc37",
+                "url": "https://api.github.com/repos/ZhaohangYangHuoban/huoban-tools-php/zipball/e2ff18245f285a4baf76e5245a83596577b22e6e",
+                "reference": "e2ff18245f285a4baf76e5245a83596577b22e6e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3334,9 +3334,9 @@
             "notification-url": "https://packagist.org/downloads/",
             "support": {
                 "issues": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/issues",
-                "source": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/tree/v6.0.0"
+                "source": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/tree/v6.0.5"
             },
-            "time": "2022-09-01T06:42:03+00:00"
+            "time": "2023-01-10T06:18:16+00:00"
         },
         {
             "name": "zhaohangyang/laminas-stratigility",
@@ -3428,5 +3428,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }

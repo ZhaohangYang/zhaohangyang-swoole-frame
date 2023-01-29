@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\Db\Mysql;
+namespace App\Models\DataBase\Mysql;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 

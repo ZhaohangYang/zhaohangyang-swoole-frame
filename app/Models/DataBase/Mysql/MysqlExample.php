@@ -1,7 +1,7 @@
 <?php
-namespace App\Models\Db\Mysql;
+namespace App\Models\DataBase\Mysql;
 
-use App\Models\Db\DbBasic;
+use App\Models\DataBase\DbBasic;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class MysqlExample extends DbBasic

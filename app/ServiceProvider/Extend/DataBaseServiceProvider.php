@@ -4,10 +4,10 @@
  * @Date: 2021-06-23 16:58:47
  * @Description: 伙伴智慧大客户研发部
  */
-namespace App\ServiceProvider\Swoole;
+namespace App\ServiceProvider\Extend;
 
-use App\Models\Db\Mysql\MysqlBasic;
-use App\Models\Db\Redis\RedisBasic;
+use App\Models\DataBase\Mysql\MysqlBasic;
+use App\Models\DataBase\Redis\RedisBasic;
 use App\ServiceProvider\BasicServiceProvider;
 
 class DataBaseServiceProvider extends BasicServiceProvider
@@ -32,6 +32,10 @@ class DataBaseServiceProvider extends BasicServiceProvider
 
         $mysql_config = $serviceConfig->get('database.mysql');
         $mysql_config['enable'] && MysqlBasic::enable($mysql_config);
+    }
+
+    public function boot()
+    {
     }
 
 }

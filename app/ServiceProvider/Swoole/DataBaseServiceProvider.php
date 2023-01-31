@@ -4,7 +4,7 @@
  * @Date: 2021-06-23 16:58:47
  * @Description: 伙伴智慧大客户研发部
  */
-namespace App\ServiceProvider\Extend;
+namespace App\ServiceProvider\Swoole;
 
 use App\Models\DataBase\Mysql\MysqlBasic;
 use App\Models\DataBase\Redis\RedisBasic;

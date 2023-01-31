@@ -1,10 +1,9 @@
 <?php
 namespace App\Models\DataBase\Mysql;
 
-use App\Models\DataBase\DbBasic;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class MysqlExample extends DbBasic
+class MysqlExample
 {
     public function getOneDayDate()
     {

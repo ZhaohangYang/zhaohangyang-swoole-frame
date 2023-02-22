@@ -28,8 +28,7 @@
         "yurunsoft/guzzle-swoole": "^2.2",
         "zhaohangyang/laminas-stratigility": "^1.0",
         "illuminate/database": "^8.71",
-        "symfony/cache": "^6.2",
-        "zhaohangyang/huoban_tools_php": "^6.0"
+        "symfony/cache": "^6.2"
     },
     "config": {
         "allow-plugins": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fd5f47a9c6f1b7566655e12d7da340c",
+    "content-hash": "d79a60615be5adaeb570d75c129a7b70",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -3745,44 +3745,6 @@
                 "source": "https://github.com/Yurunsoft/YurunHttp/tree/v4.3.12"
             },
             "time": "2022-03-31T09:14:42+00:00"
-        },
-        {
-            "name": "zhaohangyang/huoban_tools_php",
-            "version": "v6.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ZhaohangYangHuoban/huoban-tools-php.git",
-                "reference": "e2ff18245f285a4baf76e5245a83596577b22e6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ZhaohangYangHuoban/huoban-tools-php/zipball/e2ff18245f285a4baf76e5245a83596577b22e6e",
-                "reference": "e2ff18245f285a4baf76e5245a83596577b22e6e",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Huoban\\": "src/",
-                    "Huoban\\Models\\": "src/Models",
-                    "Huoban\\Helpers\\": "src/Helpers"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "support": {
-                "issues": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/issues",
-                "source": "https://github.com/ZhaohangYangHuoban/huoban-tools-php/tree/v6.0.5"
-            },
-            "time": "2023-01-10T06:18:16+00:00"
         },
         {
             "name": "zhaohangyang/laminas-stratigility",

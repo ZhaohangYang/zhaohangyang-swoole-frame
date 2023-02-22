@@ -30,10 +30,9 @@ class Server
     public function swooleServiceRegister()
     {
         // CURL功能依赖guzzle，启用可并发执行
-        DefaultHandler::setDefaultHandler(SwooleHandler::class);
-
+        DefaultHandler::setDefaultHandler( SwooleHandler::class);
         // 扩展服务【选择开启】
-        $this->app->register(\App\ServiceProvider\Swoole\DataBaseServiceProvider::class);
+        $this->app->register( \App\ServiceProvider\Swoole\DataBaseServiceProvider::class);
     }
 
     /**
@@ -49,27 +48,29 @@ class Server
 
     public function start()
     {
-        $pool = new \Swoole\Process\Pool(1);
+        $pool = new \Swoole\Process\Pool( 1 );
 
-        $pool->set(['enable_coroutine' => true]); //让每个OnWorkerStart回调都自动创建一个协程
-        $pool->on('workerStart', function ($pool, $id) {
+        $pool->set( [ 'enable_coroutine' => true ] ); //让每个OnWorkerStart回调都自动创建一个协程
+        $pool->on( 'workerStart', function ($pool, $id)
+        {
             try {
 
                 $this->swooleServiceRegister();
                 $this->swooleServiceBoot();
 
-                extract($this->config->get('swoole.server'));
-                $server = new \Swoole\Coroutine\Http\Server($host, $port + $id, $ssl);
+                extract( $this->config->get( 'swoole.server' ) );
+                $server = new \Swoole\Coroutine\Http\Server( $host, $port + $id, $ssl );
 
-                $handler = $this->app::getContainer()->make(Handler::class);
-                $server->handle('/', $handler);
+                $handler = $this->app::getContainer()->make( Handler::class);
+                $server->handle( '/', $handler );
 
                 $server->start();
-            } catch (\Throwable $th) {
-
-                BasicHelpers::printFormatMessage($th->getMessage());
             }
-        });
+            catch ( \Throwable $th ) {
+
+                BasicHelpers::printFormatMessage( $th->getMessage() );
+            }
+        } );
 
         $pool->start();
     }

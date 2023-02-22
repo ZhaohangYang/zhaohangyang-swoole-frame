@@ -189,9 +189,9 @@ class Application
      */
     protected function markAsRegistered($provider)
     {
-        $class                           = get_class($provider);
+        $class = get_class($provider);
 
-        $this->serviceProviders[]        = $provider;
+        $this->serviceProviders[] = $provider;
 
         $this->loadedProviders[ $class ] = true;
     }

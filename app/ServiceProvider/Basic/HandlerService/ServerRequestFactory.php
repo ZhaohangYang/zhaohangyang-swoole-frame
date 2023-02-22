@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace App\ServiceProvider\Basic\HandlerService;
 
@@ -56,18 +56,19 @@ class ServerRequestFactory implements ServerRequestFactoryInterface
         array $cookies = null,
         array $files = null,
         $content = null
-    ): ServerRequest {
+    ) : ServerRequest
+    {
 
         $server = normalizeServer(
             $server ?: $_SERVER,
-            is_callable($this->apacheRequestHeaders) ? $this->apacheRequestHeaders : null
+            is_callable( $this->apacheRequestHeaders ) ? $this->apacheRequestHeaders : null
         );
 
-        $files   = normalizeUploadedFiles($files ?: $_FILES);
-        $headers = marshalHeadersFromSapi($server);
+        $files   = normalizeUploadedFiles( $files ?: $_FILES );
+        $headers = marshalHeadersFromSapi( $server );
 
-        if (null === $cookies && array_key_exists('cookie', $headers)) {
-            $cookies = parseCookieHeader($headers['cookie']);
+        if ( null === $cookies && array_key_exists( 'cookie', $headers ) ) {
+            $cookies = parseCookieHeader( $headers['cookie'] );
         }
 
         $factory = new StreamFactory();
@@ -75,21 +76,21 @@ class ServerRequestFactory implements ServerRequestFactoryInterface
         return new ServerRequest(
             $server,
             $files,
-            marshalUriFromSapi($server, $headers),
-            marshalMethodFromSapi($server),
-            $factory->createStream($content),
+            marshalUriFromSapi( $server, $headers ),
+            marshalMethodFromSapi( $server ),
+            $factory->createStream( $content ),
             $headers,
             $cookies ?: $_COOKIE,
             $query ?: $_GET,
             $body ?: $_POST,
-            marshalProtocolVersionFromSapi($server)
+            marshalProtocolVersionFromSapi( $server )
         );
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createServerRequest(string $method, $uri, array $serverParams = []): ServerRequestInterface
+    public function createServerRequest(string $method, $uri, array $serverParams = []) : ServerRequestInterface
     {
         $uploadedFiles = [];
 

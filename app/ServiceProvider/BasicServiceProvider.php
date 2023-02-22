@@ -60,7 +60,8 @@ abstract class BasicServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {}
+    {
+    }
 
     /**
      * 添加制定的函数到，应用程序启动（boot）之前的回调函数集合
@@ -93,8 +94,8 @@ abstract class BasicServiceProvider extends ServiceProvider
     {
         $index = 0;
 
-        while ($index < count($this->bootingCallbacks)) {
-            $this->container->call($this->bootingCallbacks[$index]);
+        while ( $index < count( $this->bootingCallbacks ) ) {
+            $this->container->call( $this->bootingCallbacks[ $index ] );
 
             $index++;
         }
@@ -109,8 +110,8 @@ abstract class BasicServiceProvider extends ServiceProvider
     {
         $index = 0;
 
-        while ($index < count($this->bootedCallbacks)) {
-            $this->app->call($this->bootedCallbacks[$index]);
+        while ( $index < count( $this->bootedCallbacks ) ) {
+            $this->app->call( $this->bootedCallbacks[ $index ] );
 
             $index++;
         }
@@ -125,10 +126,10 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     protected function callAfterResolving($name, $callback)
     {
-        $this->container->afterResolving($name, $callback);
+        $this->container->afterResolving( $name, $callback );
 
-        if ($this->container->resolved($name)) {
-            $callback($this->container->make($name), $this->app);
+        if ( $this->container->resolved( $name ) ) {
+            $callback( $this->container->make( $name ), $this->app );
         }
     }
 
@@ -141,12 +142,12 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     protected function publishes(array $paths, $groups = null)
     {
-        $this->ensurePublishArrayInitialized($class = static::class);
+        $this->ensurePublishArrayInitialized( $class = static::class);
 
-        static::$publishes[$class] = array_merge(static::$publishes[$class], $paths);
+        static::$publishes[ $class ] = array_merge( static::$publishes[ $class ], $paths );
 
-        foreach ((array) $groups as $group) {
-            $this->addPublishGroup($group, $paths);
+        foreach ( (array) $groups as $group ) {
+            $this->addPublishGroup( $group, $paths );
         }
     }
 
@@ -158,8 +159,8 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     protected function ensurePublishArrayInitialized($class)
     {
-        if (!array_key_exists($class, static::$publishes)) {
-            static::$publishes[$class] = [];
+        if ( !array_key_exists( $class, static::$publishes ) ) {
+            static::$publishes[ $class ] = [];
         }
     }
 
@@ -172,12 +173,13 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     protected function addPublishGroup($group, $paths)
     {
-        if (!array_key_exists($group, static::$publishGroups)) {
-            static::$publishGroups[$group] = [];
+        if ( !array_key_exists( $group, static::$publishGroups ) ) {
+            static::$publishGroups[ $group ] = [];
         }
 
-        static::$publishGroups[$group] = array_merge(
-            static::$publishGroups[$group], $paths
+        static::$publishGroups[ $group ] = array_merge(
+                static::$publishGroups[ $group ],
+            $paths
         );
     }
 
@@ -190,13 +192,14 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     public static function pathsToPublish($provider = null, $group = null)
     {
-        if (!is_null($paths = static::pathsForProviderOrGroup($provider, $group))) {
+        if ( !is_null( $paths = static::pathsForProviderOrGroup( $provider, $group ) ) ) {
             return $paths;
         }
 
-        return collect(static::$publishes)->reduce(function ($paths, $p) {
-            return array_merge($paths, $p);
-        }, []);
+        return collect( static::$publishes )->reduce( function ($paths, $p)
+        {
+            return array_merge( $paths, $p );
+        }, [] );
     }
 
     /**
@@ -208,13 +211,13 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     protected static function pathsForProviderOrGroup($provider, $group)
     {
-        if ($provider && $group) {
-            return static::pathsForProviderAndGroup($provider, $group);
-        } elseif ($group && array_key_exists($group, static::$publishGroups)) {
-            return static::$publishGroups[$group];
-        } elseif ($provider && array_key_exists($provider, static::$publishes)) {
-            return static::$publishes[$provider];
-        } elseif ($group || $provider) {
+        if ( $provider && $group ) {
+            return static::pathsForProviderAndGroup( $provider, $group );
+        } elseif ( $group && array_key_exists( $group, static::$publishGroups ) ) {
+            return static::$publishGroups[ $group ];
+        } elseif ( $provider && array_key_exists( $provider, static::$publishes ) ) {
+            return static::$publishes[ $provider ];
+        } elseif ( $group || $provider ) {
             return [];
         }
     }
@@ -228,8 +231,8 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     protected static function pathsForProviderAndGroup($provider, $group)
     {
-        if (!empty(static::$publishes[$provider]) && !empty(static::$publishGroups[$group])) {
-            return array_intersect_key(static::$publishes[$provider], static::$publishGroups[$group]);
+        if ( !empty( static::$publishes[ $provider ] ) && !empty( static::$publishGroups[ $group ] ) ) {
+            return array_intersect_key( static::$publishes[ $provider ], static::$publishGroups[ $group ] );
         }
 
         return [];
@@ -242,7 +245,7 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     public static function publishableProviders()
     {
-        return array_keys(static::$publishes);
+        return array_keys( static::$publishes );
     }
 
     /**
@@ -252,7 +255,7 @@ abstract class BasicServiceProvider extends ServiceProvider
      */
     public static function publishableGroups()
     {
-        return array_keys(static::$publishGroups);
+        return array_keys( static::$publishGroups );
     }
 
     /**

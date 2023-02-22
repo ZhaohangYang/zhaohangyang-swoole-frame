@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\DataBase\Mysql;
+namespace App\ServiceProvider\Swoole\DataBaseService;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -10,7 +10,7 @@ class MysqlBasic
     public static function enable($mysql_config)
     {
         self::$capsule = new Capsule;
-        self::$capsule->addConnection([
+        self::$capsule->addConnection([ 
             'driver'      => $mysql_config['driver'],
             'host'        => $mysql_config['host'],
             'database'    => $mysql_config['database'],

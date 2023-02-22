@@ -6,18 +6,15 @@
  */
 namespace App\ServiceProvider\Swoole;
 
-use App\Models\DataBase\Mysql\MysqlBasic;
-use App\Models\DataBase\Redis\RedisBasic;
+use App\ServiceProvider\Swoole\DataBaseService\MysqlBasic;
+use App\ServiceProvider\Swoole\DataBaseService\RedisBasic;
 use App\ServiceProvider\BasicServiceProvider;
 
+/**
+ * SWOOLE数据库基础服务
+ */
 class DataBaseServiceProvider extends BasicServiceProvider
 {
-
-    public function __construct($container)
-    {
-        $this->container = $container;
-    }
-
     /**
      * Register any application services.
      *

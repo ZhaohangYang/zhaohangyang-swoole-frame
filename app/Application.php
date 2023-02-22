@@ -76,13 +76,14 @@ class Application
      */
     public function boot()
     {
-        if (!$this->booted) {
+        if ( !$this->booted ) {
 
             //应用程序启动时，触发一些“启动”回调
             //启用监听器等等
             $this->fireAppCallbacks($this->bootingCallbacks);
 
-            array_walk($this->serviceProviders, function ($provider) {
+            array_walk($this->serviceProviders, function ($provider)
+            {
                 $this->bootProvider($provider);
             });
             $this->booted = true;
@@ -99,7 +100,7 @@ class Application
      */
     protected function fireAppCallbacks(array $callbacks)
     {
-        foreach ($callbacks as $callback) {
+        foreach ( $callbacks as $callback ) {
             call_user_func($callback, $this);
         }
     }
@@ -119,17 +120,17 @@ class Application
      * @param [type] $provider
      * @param array $options
      * @param boolean $force
-     * @return void
+     * @return bool | null
      */
     public function register($provider, $options = [], $force = false)
     {
         // 如果该服务已经被注册过，并且没有明确说明需要重新注册则直接返回已注册的服务
-        if ($registered = $this->getProvider($provider) && !$force) {
+        if ( $registered = $this->getProvider($provider) && !$force ) {
             return $registered;
         }
 
         // 如果传入的服务是一个字符串，就尝试解析它
-        if (is_string($provider)) {
+        if ( is_string($provider) ) {
             $provider = $this->resolveProviderClass($provider);
         }
 
@@ -137,15 +138,15 @@ class Application
 
         //一旦我们注册了服务，我们将遍历这些选项，并在应用程序上设置它们，
         //在服务对象的实际加载中，提供给开发人员使用。
-        foreach ($options as $key => $value) {
-            $this[$key] = $value;
+        foreach ( $options as $key => $value ) {
+            $this[ $key ] = $value;
         }
 
         $this->markAsRegistered($provider);
 
         //如果应用程序已经启动，重新调用服务的boot方法，
         //如果未启动不调用，因为程序启动之后会统一把已注册的服务全部执行各自的boot方法
-        if ($this->booted) {
+        if ( $this->booted ) {
             $this->bootProvider($provider);
         }
 
@@ -163,7 +164,8 @@ class Application
         $name = is_string($provider) ? $provider : get_class($provider);
 
         // 遍历已注册的服务数组，返回第一个符合该服务名称的服务实例，如果不存在返回null
-        return Arr::first($this->serviceProviders, function ($key, $value) use ($name) {
+        return Arr::first($this->serviceProviders, function ($key, $value) use ($name)
+        {
             return $value instanceof $name;
         });
     }
@@ -187,11 +189,11 @@ class Application
      */
     protected function markAsRegistered($provider)
     {
-        $class = get_class($provider);
+        $class                           = get_class($provider);
 
-        $this->serviceProviders[] = $provider;
+        $this->serviceProviders[]        = $provider;
 
-        $this->loadedProviders[$class] = true;
+        $this->loadedProviders[ $class ] = true;
     }
 
     /**
@@ -202,8 +204,8 @@ class Application
      */
     protected function bootProvider(ServiceProvider $provider)
     {
-        if (method_exists($provider, 'boot')) {
-            return self::$container->call([$provider, 'boot']);
+        if ( method_exists($provider, 'boot') ) {
+            return self::$container->call([ $provider, 'boot' ]);
         }
     }
 

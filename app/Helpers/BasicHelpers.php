@@ -3,8 +3,9 @@ namespace App\Helpers;
 
 class BasicHelpers
 {
-    public static function printFormatMessage($message)
+    public static function printFormatMessage($message, $type = 'INFO')
     {
-        print_r(date('y-m-d H:i:s') . $message . PHP_EOL);
+        $data_time = date('Y-m-d H:i:s');
+        return "{$type}::{$data_time} >> {$message}" . PHP_EOL;
     }
 }
